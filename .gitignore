@@ -1,3 +1,4 @@
 uri-table-scraper/uri-table-scraper
 trash/
 tmp/
+.venv/
