@@ -28,5 +28,17 @@ go build .
 ./uri-table-scraper.py -match "(?i)position" -url https://byucougars.com/sports/football/roster -type stdout
 ```
 
+## Using Playwrite
 
+```
+python3 -m venv .venv
+. .venv/bin/activate
+pip install playwright
+playwright install-deps
+python3 useplaywright.py
+```
 
+### URL example from playwright you could utilize instead table parsing
+```
+https://byucougars.com/website-api/rosters?filter%5Bsport_id%5D=4&include=season&sort=-id&per_page=200
+```
