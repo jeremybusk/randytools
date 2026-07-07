@@ -35,6 +35,25 @@ This get's most URLs but you may have to manually get blank ones unless you want
 
 If URL doesn't exist it will not be able to scrape and output json file for that college roster
 
+Roster json will be outputed on a per college basis like so
+
+BYU.roster.out.json
+Georgia_Tech.roster.out.json
+
+If you enable diff only it will only report diffs to the diff_report_file.
+
+diff only example config
+```
+input_file: "teams.csv"
+output_file: "teams_updated.xlsx"
+csv_delimiter: "|"
+match_pattern: "(?i)name|player|number"
+search_suffix: "/roster"
+skip_existing: true
+diff_only: false
+diff_report_file: "diff-report.json"
+```
+
 
 ## Other Options
 
