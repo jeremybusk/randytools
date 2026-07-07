@@ -1,0 +1,7 @@
+input_excel: "teams.xlsx"
+output_excel: "teams_updated.xlsx"
+match_pattern: "(?i)name|player|number"
+search_suffix: "/roster"
+skip_existing: true
+diff_only: false
+diff_report_file: "diff-report.json"
