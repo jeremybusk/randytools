@@ -1,5 +1,7 @@
-input_excel: "teams.xlsx"
-output_excel: "teams_updated.xlsx"
+# input_file: "teams.csv"
+input_file: "teams.xlsx"
+output_file: "teams_updated.xlsx"
+csv_delimiter: "|"
 match_pattern: "(?i)name|player|number"
 search_suffix: "/roster"
 skip_existing: true

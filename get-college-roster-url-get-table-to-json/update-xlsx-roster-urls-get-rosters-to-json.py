@@ -84,15 +84,19 @@ def main():
     with open('config.yaml', 'r') as f:
         config = yaml.safe_load(f)
 
-    input_excel = config.get('input_excel', 'teams.xlsx')
-    output_excel = config.get('output_excel', 'teams.xlsx')
+    input_file = config.get('input_file', 'teams.xlsx')
+    output_file = config.get('output_file', 'teams_updated.xlsx')
+    csv_delimiter = config.get('csv_delimiter', '|')
     match_pattern = config.get('match_pattern', '(?i)name|player')
     search_suffix = config.get('search_suffix', '/roster')
     skip_existing = config.get('skip_existing', False)
     diff_only = config.get('diff_only', False)
     diff_report_file = config.get('diff_report_file', 'diff-report.json')
 
-    df = pd.read_excel(input_excel)
+    if input_file.lower().endswith('.csv'):
+        df = pd.read_csv(input_file, sep=csv_delimiter)
+    else:
+        df = pd.read_excel(input_file)
 
     if "Roster URL" not in df.columns:
         df["Roster URL"] = pd.Series(dtype=object)
@@ -157,7 +161,10 @@ def main():
         time.sleep(num)
 
     if not diff_only:
-        df.to_excel(output_excel, index=False)
+        if output_file.lower().endswith('.csv'):
+            df.to_csv(output_file, sep=csv_delimiter, index=False)
+        else:
+            df.to_excel(output_file, index=False)
     else:
         with open(diff_report_file, 'w', encoding='utf-8') as f:
             json.dump(diff_summary, f, indent=2)
